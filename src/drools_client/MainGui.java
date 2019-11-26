@@ -6,6 +6,9 @@
 package drools_client;
 
 import drools_client.model.BloodSample;
+import drools_client.model.Results;
+import java.util.Arrays;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
@@ -35,6 +38,9 @@ public class MainGui extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel_table = new javax.swing.JPanel();
         tab_pane = new javax.swing.JTabbedPane();
+        jLabel1 = new javax.swing.JLabel();
+        id_field = new javax.swing.JTextField();
+        checkSample_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,14 +56,23 @@ public class MainGui extends javax.swing.JFrame {
         jPanel_tableLayout.setHorizontalGroup(
             jPanel_tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_tableLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(tab_pane, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addComponent(tab_pane, javax.swing.GroupLayout.PREFERRED_SIZE, 983, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
         jPanel_tableLayout.setVerticalGroup(
             jPanel_tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tab_pane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
         );
+
+        jLabel1.setText("Client id:");
+
+        checkSample_button.setText("Check sample");
+        checkSample_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkSample_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,19 +81,33 @@ public class MainGui extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(357, 357, 357))
+                .addGap(47, 47, 47)
+                .addComponent(checkSample_button)
+                .addGap(232, 232, 232))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jPanel_table, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29)
+                .addComponent(id_field, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(id_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(jPanel_table, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(checkSample_button))
                 .addGap(81, 81, 81))
         );
 
@@ -91,9 +120,31 @@ public class MainGui extends javax.swing.JFrame {
         System.out.println(sample.toString());
         createTable(sample);
         
-        //System.out.println(Utils.postBloodSample(sample).getDiseases());
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void checkSample_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSample_buttonActionPerformed
+        Results result = Utils.postBloodSample(sample);
+        showResults(result);
+    }//GEN-LAST:event_checkSample_buttonActionPerformed
+
+    private void showResults(Results cResults){
+        String[] column = {"Pozytywne Badania"};
+        
+        String[] tmp = cResults.getArray();
+        
+        String[][] data = new String[tmp.length][1];
+        
+        for(int i=0; i<tmp.length; i++){
+            data[i][0] = tmp[i]; 
+        }
+        
+        System.out.println();
+        
+        JTable table = new JTable(data, column);
+        
+        tab_pane.add("Results", new JScrollPane(table));
+    }
+    
     private void createTable(BloodSample cSample){
         if(tab_pane.getTabCount()>0){
             tab_pane.removeAll();
@@ -144,7 +195,10 @@ public class MainGui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton checkSample_button;
+    private javax.swing.JTextField id_field;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel_table;
     private javax.swing.JTabbedPane tab_pane;
     // End of variables declaration//GEN-END:variables

@@ -4,7 +4,7 @@ package drools_client.model;
 import java.util.List;
 
 public class Results {
-    private List diseases;
+    private List<String> diseases;
 
     public Results(List diseases) {
         this.diseases = diseases;
@@ -14,11 +14,17 @@ public class Results {
         diseases.add(tmp);
     }
 
-    public List getDiseases() {
+    public List<String> getDiseases() {
         return diseases;
     }
 
     public void setDiseases(List diseases) {
         this.diseases = diseases;
+    }
+    
+    public String[] getArray(){
+        String[] s = new String[diseases.size()];
+        s = diseases.toArray(s);
+        return s;
     }
 }
