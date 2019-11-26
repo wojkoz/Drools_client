@@ -2,6 +2,7 @@
 package drools_client.model;
 
 
+
 public class BloodSample {
     private int predkoscOpadaniaLeukocytow; //mm/h
     private int procentHermatokrytu; //%
@@ -15,7 +16,7 @@ public class BloodSample {
     public String toString() {
         return "BloodSample{" + "predkoscOpadaniaLeukocytow=" + predkoscOpadaniaLeukocytow + ", procentHermatokrytu=" + procentHermatokrytu + ", stezenieHemoglobiny=" + stezenieHemoglobiny + ", liczbaBialychKrwinek=" + liczbaBialychKrwinek + ", liczbaCzerwonychKrwinek=" + liczbaCzerwonychKrwinek + ", liczbaPlytekKrwi=" + liczbaPlytekKrwi + ", plec=" + plec + '}';
     }
-
+    
     
     
     public String getPlec() {

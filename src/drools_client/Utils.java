@@ -17,6 +17,25 @@ import org.apache.http.util.EntityUtils;
 
 
 public class Utils {
+    
+    public static String[][] getData(BloodSample sample){
+        
+        DATA[0][0] = Integer.toString(sample.getPredkoscOpadaniaLeukocytow());
+        DATA[0][1] = Integer.toString(sample.getProcentHermatokrytu());
+        DATA[0][2] = Float.toString(sample.getStezenieHemoglobiny());
+        DATA[0][3] = Integer.toString(sample.getLiczbaBialychKrwinek());
+        DATA[0][4] = Integer.toString(sample.getLiczbaCzerwonychKrwinek());
+        DATA[0][5] = Integer.toString(sample.getLiczbaPlytekKrwi());
+        DATA[0][6] = sample.getPlec();
+        
+        return DATA;
+    }
+    
+    public static final String[] COLUMNS = {"predkoscOpadaniaLeukocytow","procentHermatokrytu","stezenieHemoglobiny",
+        "liczbaBialychKrwinek","liczbaCzerwonychKrwinek","liczbaPlytekKrwi","plec"};
+    
+    
+    private static final String[][] DATA = { {"0", "0", "0", "0","0", "0","M"} };
 
     public static BloodSample generateBloodSample(){
         BloodSample sample = new BloodSample();
@@ -29,6 +48,12 @@ public class Utils {
         sample.setLiczbaBialychKrwinek(generator.nextInt(50000)+1);
         sample.setLiczbaCzerwonychKrwinek(generator.nextInt(65000)+1);
         sample.setLiczbaPlytekKrwi(generator.nextInt(500000)+1);
+        
+        if(generator.nextInt(2) == 0){
+            sample.setPlec("M");
+        }else{
+            sample.setPlec("K");
+        }
         
         return sample;
     }
