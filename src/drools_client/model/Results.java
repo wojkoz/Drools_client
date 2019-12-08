@@ -27,4 +27,12 @@ public class Results {
         s = diseases.toArray(s);
         return s;
     }
+
+    @Override
+    public String toString() {
+        String r = diseases.toString().substring(1).replace("]", "");
+        return r;
+    }
+    
+    
 }

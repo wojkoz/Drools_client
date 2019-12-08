@@ -3,10 +3,22 @@ package drools_client;
 
 import com.google.gson.Gson;
 import drools_client.model.BloodSample;
+import drools_client.model.Client;
 import drools_client.model.Results;
+import java.awt.GridLayout;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Box;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -100,4 +112,6 @@ public class Utils {
         }
         return result;
     }
+    
+   
 }

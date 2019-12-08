@@ -1,34 +1,33 @@
 
 package drools_client.model;
 
+import java.sql.Date;
 
-public class Client {
+
+public class Employee {
     private int id;
     private String imie;
     private String nazwisko;
     private java.sql.Date data_urodzenia;
-    private String numer_telefonu;
-    private String pesel;
+    private String stanowisko;
 
-    public Client(String imie, String nazwisko, String data_urodzenia, String numer_telefonu, String pesel) {
+    public Employee(String imie, String nazwisko, String data_urodzenia , String stanowisko) {
         this.imie = imie;
         this.nazwisko = nazwisko;
+        this.stanowisko = stanowisko;
         this.data_urodzenia = java.sql.Date.valueOf(data_urodzenia);
-        this.numer_telefonu = numer_telefonu;
-        this.pesel = pesel;
     }
 
-    public Client() {
-    }
-
-    public java.sql.Date getData_urodzenia() {
+    public Date getData_urodzenia() {
         return data_urodzenia;
     }
 
-    public void setData_urodzenia(java.sql.Date data_urodzenia) {
+    public Employee() {
+    }
+
+    public void setData_urodzenia(Date data_urodzenia) {
         this.data_urodzenia = data_urodzenia;
     }
-    
 
     public int getId() {
         return id;
@@ -54,20 +53,12 @@ public class Client {
         this.nazwisko = nazwisko;
     }
 
-    public String getNumer_telefonu() {
-        return numer_telefonu;
+    public String getStanowisko() {
+        return stanowisko;
     }
 
-    public void setNumer_telefonu(String numer_telefonu) {
-        this.numer_telefonu = numer_telefonu;
-    }
-
-    public String getPesel() {
-        return pesel;
-    }
-
-    public void setPesel(String pesel) {
-        this.pesel = pesel;
+    public void setStanowisko(String stanowisko) {
+        this.stanowisko = stanowisko;
     }
     
 }
