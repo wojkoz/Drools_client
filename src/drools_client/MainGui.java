@@ -33,13 +33,19 @@ public class MainGui extends javax.swing.JFrame {
     private boolean isCheckSample = false;
     private Client client;
     private Employee employee;
+    private Results result;
     
     
     public MainGui() {
         initComponents();
         generateSampleButton.setVisible(false);
         searchClientButton.setVisible(false);
+        checkSample_button.setVisible(false);
+        saveResultsButton.setVisible(false);
+        deleteResultsButton.setVisible(false);
         
+        nameLabel.setVisible(false);
+        lastNameLabel.setVisible(false);
         
     }
 
@@ -62,6 +68,10 @@ public class MainGui extends javax.swing.JFrame {
         loginEmployeeButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         employeeIdField = new javax.swing.JTextField();
+        nameLabel = new javax.swing.JLabel();
+        lastNameLabel = new javax.swing.JLabel();
+        saveResultsButton = new javax.swing.JButton();
+        deleteResultsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,34 +122,62 @@ public class MainGui extends javax.swing.JFrame {
 
         jLabel2.setText("Employee id:");
 
+        nameLabel.setText("jLabel3");
+
+        lastNameLabel.setText("jLabel4");
+
+        saveResultsButton.setText("Save results");
+        saveResultsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveResultsButtonActionPerformed(evt);
+            }
+        });
+
+        deleteResultsButton.setText("Delete Results");
+        deleteResultsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteResultsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(generateSampleButton)
-                .addGap(47, 47, 47)
-                .addComponent(checkSample_button)
-                .addGap(232, 232, 232))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jPanel_table, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pesel_field, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                    .addComponent(employeeIdField))
-                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loginEmployeeButton)
-                    .addComponent(searchClientButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nameLabel)
+                        .addGap(52, 52, 52)
+                        .addComponent(lastNameLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pesel_field, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                            .addComponent(employeeIdField))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(loginEmployeeButton)
+                            .addComponent(searchClientButton))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(saveResultsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(generateSampleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(checkSample_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteResultsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(232, 232, 232))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,13 +192,21 @@ public class MainGui extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(pesel_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchClientButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameLabel)
+                    .addComponent(lastNameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jPanel_table, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(generateSampleButton)
                     .addComponent(checkSample_button))
-                .addGap(81, 81, 81))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveResultsButton)
+                    .addComponent(deleteResultsButton))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -172,37 +218,109 @@ public class MainGui extends javax.swing.JFrame {
         System.out.println(sample.toString());
         createTable(sample);
         checkSample_button.setEnabled(true);
+        checkSample_button.setVisible(true);
         
     }//GEN-LAST:event_generateSampleButtonActionPerformed
 
     private void checkSample_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSample_buttonActionPerformed
         if(!isCheckSample){
-            Results result = Utils.postBloodSample(sample);
+            result = Utils.postBloodSample(sample);
             showResults(result);
             isCheckSample = true;
+            saveResultsButton.setVisible(true);
+            deleteResultsButton.setVisible(true);
         }
     }//GEN-LAST:event_checkSample_buttonActionPerformed
 
     private void setEmployee(){
-        //employee = new Employee(WIDTH, imie, nazwisko, data_urodzenia, stanowisko);
+        employee = Database.getEmployee(Integer.parseInt(employeeIdField.getText()));
+        
+        if(employee != null && employee.getData_urodzenia()==null){
+            employee = registerEmployee();
+            Database.registerEmplyee(employee);
+            employee = Database.getEmployee(Integer.parseInt(employeeIdField.getText()));
+        }
                 
         searchClientButton.setVisible(true);
     }
     
     private void searchClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchClientButtonActionPerformed
         client = Database.getClient(pesel_field.getText());
-        if(client != null && client.getPesel()==null){
+        if(client.getData_urodzenia() == null){
             client = registerClient();
             Database.registerClient(client);
             client = Database.getClient(pesel_field.getText());
         }
+        nameLabel.setText(client.getImie());
+        nameLabel.setVisible(true);
         
+        lastNameLabel.setText(client.getNazwisko());
+        lastNameLabel.setVisible(true);
+        
+        generateSampleButton.setVisible(true);
     }//GEN-LAST:event_searchClientButtonActionPerformed
 
     private void loginEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginEmployeeButtonActionPerformed
-        setEmployee();
+        if(!"".equals(employeeIdField.getText())){
+            setEmployee();
+        }
     }//GEN-LAST:event_loginEmployeeButtonActionPerformed
 
+    private void saveResultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveResultsButtonActionPerformed
+        Database.registerResults(result, client, employee);
+    }//GEN-LAST:event_saveResultsButtonActionPerformed
+
+    private void deleteResultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteResultsButtonActionPerformed
+        jPanel_table.removeAll();
+        result = null;
+        sample = null;
+        
+        deleteResultsButton.setVisible(false);
+        saveResultsButton.setVisible(false);
+        isCheckSample = false;
+    }//GEN-LAST:event_deleteResultsButtonActionPerformed
+
+    
+    private Employee registerEmployee(){
+      JTextField name = new JTextField(5);
+      JTextField lastName = new JTextField();
+      JTextField birthday = new JTextField();
+
+
+      JPanel myPanel = new JPanel(new GridLayout(0, 1, 5, 5));
+      myPanel.add(new JLabel("Name:"));
+      myPanel.add(name);
+      myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+      myPanel.add(new JLabel("Last name:"));
+      myPanel.add(lastName);
+      myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+      myPanel.add(new JLabel("birthday(rrrr-mm-dd):"));
+      myPanel.add(birthday);
+
+      int result = JOptionPane.showConfirmDialog(null, new JScrollPane(myPanel), 
+               "Please enter informations", JOptionPane.OK_OPTION);
+      if (result == JOptionPane.OK_OPTION) {
+          if("".equals(name.getText())){
+              JOptionPane.showMessageDialog(null, "Empty name field", "alert", JOptionPane.ERROR_MESSAGE);
+              return null;
+          }
+          if("".equals(lastName.getText())){
+              JOptionPane.showMessageDialog(null, "Empty last name field", "alert", JOptionPane.ERROR_MESSAGE);
+              return null;
+          }
+          if("".equals(birthday.getText())){
+              JOptionPane.showMessageDialog(null, "Empty birthday field", "alert", JOptionPane.ERROR_MESSAGE);
+              return null;
+          }
+
+
+
+            Employee emplyee = new Employee(name.getText(), lastName.getText(), birthday.getText(),"recepcjonista");
+            return emplyee;
+      }
+     return null;
+    }
+    
     
     private Client registerClient(){
       JTextField name = new JTextField(5);
@@ -327,13 +445,17 @@ public class MainGui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkSample_button;
+    private javax.swing.JButton deleteResultsButton;
     private javax.swing.JTextField employeeIdField;
     private javax.swing.JButton generateSampleButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel_table;
+    private javax.swing.JLabel lastNameLabel;
     private javax.swing.JButton loginEmployeeButton;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField pesel_field;
+    private javax.swing.JButton saveResultsButton;
     private javax.swing.JButton searchClientButton;
     private javax.swing.JTabbedPane tab_pane;
     // End of variables declaration//GEN-END:variables

@@ -30,7 +30,7 @@ public class Database {
         Connection connection = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        Client client = new Client();        
+        Client client = new Client();       
 
         try {
             Class.forName(JDBC_DRIVER);
@@ -46,6 +46,7 @@ public class Database {
             rs = pstmt.executeQuery();
             rs.beforeFirst();
             while (rs.next()) {
+                
                 client.setId(rs.getInt("id_pacjenta"));
                 client.setData_urodzenia(rs.getDate("data_urodzenia"));
                 client.setImie(rs.getString("imie"));
@@ -132,7 +133,7 @@ public class Database {
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
 
-            String sql = "SELECT * from laboratorium.pracownik WHERE id = ?";
+            String sql = "SELECT * from laboratorium.pracownik WHERE id_pracownika = ?";
             pstmt = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE, ResultSet.FETCH_REVERSE);
             pstmt.clearParameters();
             pstmt.setInt(1, id);
@@ -183,7 +184,7 @@ public class Database {
            pstmt.setString(1, emplyee.getImie());
            pstmt.setString(2, emplyee.getNazwisko());
            pstmt.setDate(3, emplyee.getData_urodzenia());
-           pstmt.setString(5, emplyee.getStanowisko());
+           pstmt.setString(4, emplyee.getStanowisko());
 
            pstmt.executeUpdate();
            
