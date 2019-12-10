@@ -30,8 +30,80 @@ import org.apache.http.util.EntityUtils;
 
 public class Utils {
     
+    public static String[][] getData2(BloodSample sample){
+        String[][] data = {
+            {
+                "predkoscOpadaniaLeukocytow", Integer.toString(sample.getPredkoscOpadaniaLeukocytow())
+            },
+            {
+                "procentHermatokrytu", Integer.toString(sample.getProcentHermatokrytu())
+            },
+            {
+                "stezenieHemoglobiny", Float.toString(sample.getStezenieHemoglobiny())
+            },
+            {
+                "liczbaBialychKrwinek", Integer.toString(sample.getLiczbaBialychKrwinek())
+            },
+            {
+                "liczbaCzerwonychKrwinek",Integer.toString(sample.getLiczbaCzerwonychKrwinek())
+            },
+            {
+                "liczbaPlytekKrwi",Integer.toString(sample.getLiczbaPlytekKrwi())
+            },
+            {
+                "plec",sample.getPlec()
+            },
+            {
+                "ALT",Integer.toString(sample.getAlt())
+            },
+            {
+                "AST",Integer.toString(sample.getAst())
+            },{
+                "GGTP",Integer.toString(sample.getGgtp())
+            },{
+                "Żelazo",Integer.toString(sample.getZelazo())
+            },{
+                "Amylaza",Integer.toString(sample.getAmylaza())
+            },{
+                "Lipaza",Integer.toString(sample.getLipaza())
+            },{
+                "HCT",Integer.toString(sample.getHct())
+            },{
+                "WBC",Float.toString(sample.getWbc())
+            },{
+                "RBC",Float.toString(sample.getRbc())
+            },{
+                "PLT",Integer.toString(sample.getPlt())
+            },{
+                "INR",Float.toString(sample.getInr())
+            },{
+                "TC",Integer.toString(sample.getTc())
+            },{
+                "LDL",Integer.toString(sample.getLdl())
+            },{
+                "HDL",Integer.toString(sample.getHdl())
+            },{
+                "Glukoza",Integer.toString(sample.getGlukoza())
+            },{
+                "Cystatyna C",Float.toString(sample.getCystatynaC())
+            },{
+                "Wapń",Float.toString(sample.getWapn())
+            },{
+                "Fosfor",Float.toString(sample.getFosfor())
+            },{
+                "Witamina D",Integer.toString(sample.getWitaminaD())
+            },{
+                "Witamina B12",Integer.toString(sample.getWitaminaB12())
+            },{
+                "Kwas Foliowy",Float.toString(sample.getKwasFoliowy())
+            },{
+                "TSH",Float.toString(sample.getTsh())
+            }
+        };
+        return data;
+    }
+    
     public static String[][] getData(BloodSample sample){
-        
         DATA[0][0] = Integer.toString(sample.getPredkoscOpadaniaLeukocytow());
         DATA[0][1] = Integer.toString(sample.getProcentHermatokrytu());
         DATA[0][2] = Float.toString(sample.getStezenieHemoglobiny());
@@ -66,10 +138,12 @@ public class Utils {
         return DATA;
     }
     
-    public static final String[] COLUMNS = {"predkoscOpadaniaLeukocytow","procentHermatokrytu","stezenieHemoglobiny",
+    public static final String[] COLUMNS2 = {"predkoscOpadaniaLeukocytow","procentHermatokrytu","stezenieHemoglobiny",
         "liczbaBialychKrwinek","liczbaCzerwonychKrwinek","liczbaPlytekKrwi","plec","ALT","AST","GGTP","Żelazo"
             ,"Amylaza","Lipaza","HCT","WBC","RBC","PLT","INR","TC","LDL","HDL","Glukoza","Cystatyna C","Wapń","Fosfor","Witamina D"
     ,"Witamina B12","Kwas Foliowy","TSH"};
+    
+    public static final String[] COLUMNS = {"Nazwa Bdania", "Wartosc"};
     
     
     private static final String[][] DATA = new String[1][29];

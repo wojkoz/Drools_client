@@ -376,7 +376,7 @@ public class MainGui extends javax.swing.JFrame {
     
     
     private void showResults(Results cResults){
-        String[] column = {"Pozytywne Badania"};
+        String[] column = {"Choroby"};
         
         String[] tmp = cResults.getArray();
         
@@ -390,7 +390,25 @@ public class MainGui extends javax.swing.JFrame {
         
         JTable table = new JTable(data, column);
         
-        tab_pane.add("Results", new JScrollPane(table));
+        tab_pane.add("Choroby", new JScrollPane(table));
+        
+        //badania
+        
+        String[] column2 = {"Badania poza norma"};
+        
+        String[] tmp2 = cResults.getTestArray();
+        
+        String[][] data2 = new String[tmp2.length][1];
+        
+        for(int i=0; i<tmp2.length; i++){
+            data2[i][0] = tmp2[i]; 
+        }
+        
+        System.out.println();
+        
+        JTable table2 = new JTable(data2, column2);
+        
+        tab_pane.add("Badania", new JScrollPane(table2));
     }
     
     private void createTable(BloodSample cSample){
@@ -398,7 +416,7 @@ public class MainGui extends javax.swing.JFrame {
             tab_pane.removeAll();
         }
         
-        JTable table = new JTable(Utils.getData(cSample), Utils.COLUMNS ); 
+        JTable table = new JTable(Utils.getData2(cSample), Utils.COLUMNS ); 
         
         table.getModel().addTableModelListener((TableModelEvent e) -> {
             System.out.println(e.getFirstRow());
