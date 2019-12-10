@@ -39,15 +39,40 @@ public class Utils {
         DATA[0][4] = Integer.toString(sample.getLiczbaCzerwonychKrwinek());
         DATA[0][5] = Integer.toString(sample.getLiczbaPlytekKrwi());
         DATA[0][6] = sample.getPlec();
+        //nowe
+        DATA[0][7] = Integer.toString(sample.getAlt());
+        DATA[0][8] = Integer.toString(sample.getAst());
+        DATA[0][9] = Integer.toString(sample.getGgtp());
+        DATA[0][10] = Integer.toString(sample.getZelazo());
+        DATA[0][11] = Integer.toString(sample.getAmylaza());
+        DATA[0][12] = Integer.toString(sample.getLipaza());
+        DATA[0][13] = Integer.toString(sample.getHct());
+        DATA[0][14] = Float.toString(sample.getWbc());
+        DATA[0][15] = Float.toString(sample.getRbc());
+        DATA[0][16] = Integer.toString(sample.getPlt());
+        DATA[0][17] = Float.toString(sample.getInr());
+        DATA[0][18] = Integer.toString(sample.getTc());
+        DATA[0][19] = Integer.toString(sample.getLdl());
+        DATA[0][20] = Integer.toString(sample.getHdl());
+        DATA[0][21] = Integer.toString(sample.getGlukoza());
+        DATA[0][22] = Float.toString(sample.getCystatynaC());
+        DATA[0][23] = Float.toString(sample.getWapn());
+        DATA[0][24] = Float.toString(sample.getFosfor());
+        DATA[0][25] = Integer.toString(sample.getWitaminaD());
+        DATA[0][26] = Integer.toString(sample.getWitaminaB12());
+        DATA[0][27] = Float.toString(sample.getKwasFoliowy());
+        DATA[0][28] = Float.toString(sample.getTsh());
         
         return DATA;
     }
     
     public static final String[] COLUMNS = {"predkoscOpadaniaLeukocytow","procentHermatokrytu","stezenieHemoglobiny",
-        "liczbaBialychKrwinek","liczbaCzerwonychKrwinek","liczbaPlytekKrwi","plec"};
+        "liczbaBialychKrwinek","liczbaCzerwonychKrwinek","liczbaPlytekKrwi","plec","ALT","AST","GGTP","Żelazo"
+            ,"Amylaza","Lipaza","HCT","WBC","RBC","PLT","INR","TC","LDL","HDL","Glukoza","Cystatyna C","Wapń","Fosfor","Witamina D"
+    ,"Witamina B12","Kwas Foliowy","TSH"};
     
     
-    private static final String[][] DATA = { {"0", "0", "0", "0","0", "0","M"} };
+    private static final String[][] DATA = new String[1][29];
 
     public static BloodSample generateBloodSample(){
         BloodSample sample = new BloodSample();
@@ -60,6 +85,29 @@ public class Utils {
         sample.setLiczbaBialychKrwinek(generator.nextInt(50000)+1);
         sample.setLiczbaCzerwonychKrwinek(generator.nextInt(65000)+1);
         sample.setLiczbaPlytekKrwi(generator.nextInt(500000)+1);
+        //nowe
+        sample.setAlt(generator.nextInt(51));
+        sample.setAst(generator.nextInt(50));
+        sample.setGgtp(generator.nextInt(60));
+        sample.setZelazo(generator.nextInt(210));
+        sample.setAmylaza(generator.nextInt(210));
+        sample.setLipaza(generator.nextInt(210));
+        sample.setHct(generator.nextInt(70));
+        sample.setWbc(generator.nextInt(15) + generator.nextFloat());
+        sample.setRbc(generator.nextInt(10) + generator.nextFloat());
+        sample.setPlt(generator.nextInt(500));
+        sample.setInr(generator.nextFloat() + generator.nextFloat());
+        sample.setTc(generator.nextInt(250));
+        sample.setLdl(generator.nextInt(200));
+        sample.setHdl(generator.nextInt(80));
+        sample.setGlukoza(generator.nextInt(200));
+        sample.setCystatynaC(generator.nextInt(2) + generator.nextFloat());
+        sample.setWapn(generator.nextInt(15) + generator.nextFloat());
+        sample.setFosfor(generator.nextInt(10) + generator.nextFloat());
+        sample.setWitaminaD(generator.nextInt(90));
+        sample.setWitaminaB12(generator.nextInt(1500));
+        sample.setKwasFoliowy(generator.nextInt(15) + generator.nextFloat());
+        sample.setTsh(generator.nextInt(9) + generator.nextFloat());
         
         if(generator.nextInt(2) == 0){
             sample.setPlec("M");

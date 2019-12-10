@@ -271,7 +271,7 @@ public class MainGui extends javax.swing.JFrame {
     }//GEN-LAST:event_saveResultsButtonActionPerformed
 
     private void deleteResultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteResultsButtonActionPerformed
-        jPanel_table.removeAll();
+        tab_pane.removeAll();
         result = null;
         sample = null;
         
